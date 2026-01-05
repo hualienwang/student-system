@@ -24,7 +24,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # 複製構建結果到 nginx 目錄
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /etc/nginx/html
 
 # 複製 nginx 配置
 COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
