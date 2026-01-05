@@ -1,1 +1,4 @@
-Nothing should be ignored based on the provided file changes. The modified files ('backend/app/main.py', 'backend/run.py') are source code files that should be tracked in version control.
+```
+# Environment
+.env
+```
