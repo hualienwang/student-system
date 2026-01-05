@@ -5,7 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # 複製依賴文件
-COPY backend/requirements.txt .
+COPY requirements.txt .
 
 # 安裝系統依賴和 Python 包
 RUN apt-get update && \
@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # 複製應用代碼
-COPY backend/ .
+COPY . .
 
 # 暴露端口
 EXPOSE 8000

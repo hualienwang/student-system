@@ -51,8 +51,10 @@ def on_startup():
     try:
         create_db_and_tables()
         app_logger.info("資料庫初始化完成")
+        print("✅ 資料庫初始化完成")
     except Exception as e:
         app_logger.error(f"資料庫初始化失敗: {e}")
+        print(f"❌ 資料庫初始化失敗: {e}")
         print("⚠️ 系統將繼續運行，但資料庫功能可能不可用")
         print("請檢查 MySQL 連接設置")
 
