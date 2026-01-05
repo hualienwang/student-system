@@ -19,8 +19,9 @@ if DB_TYPE == "mysql":
     # 修正連接字串
     DATABASE_URL = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
 else:
-    # 使用 SQLite 作為備用選項
-    DATABASE_URL = "sqlite:///./student_system.db"
+    # 使用 SQLite 作為備用選項，但在Render環境中使用絕對路徑
+    import os
+    DATABASE_URL = f"sqlite:///{os.path.join(os.getcwd(), 'student_system.db')}"
 
 # 建立資料庫引擎
 engine = create_engine(DATABASE_URL, echo=True, pool_pre_ping=True)
