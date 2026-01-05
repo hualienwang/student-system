@@ -11,11 +11,11 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # 設定環境變數以配置 API URL
-ARG API_BASE_URL=http://localhost:8000
+ARG API_BASE_URL=
 ENV VITE_API_BASE_URL=$API_BASE_URL
 
 # 複製源代碼
-COPY . .
+COPY frontend/ .
 
 # 構建應用
 RUN npm run build
