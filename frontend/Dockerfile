@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # 安裝依賴
-RUN npm ci --only=production
+RUN npm install
 
 # 設定環境變數以配置 API URL
 ARG API_BASE_URL=
