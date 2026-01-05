@@ -3,7 +3,7 @@ services:
 - type: web
   name: student-system-backend
   env: docker
-  region: frankfurt  # Choose region closest to your users
+  region: oregon  # Use oregon for better global performance, or change to frankfurt if you prefer
   plan: free
   dockerfilePath: ./backend/Dockerfile
   repo: .  # Use the root of the repository
@@ -13,14 +13,16 @@ services:
     - key: DATABASE_URL
       value: sqlite:///./student_system.db
     - key: ALLOWED_ORIGINS
-      value: https://student-system-frontend.onrender.com,https://student-system-backend.onrender.com,http://localhost:8000,http://127.0.0.1:8000
+      value: https://student-system-frontend.onrender.com,https://student-system-backend.onrender.com,http://localhost:8000,http://127.0.0.1:8000,https://*.onrender.com
+    - key: PORT
+      value: 8000
   autoDeploy: false  # Set to true after initial deployment to enable auto deploys
 
 # Frontend Service
 - type: web
   name: student-system-frontend
   env: docker
-  region: frankfurt
+  region: oregon  # Use same region for better performance
   plan: free
   dockerfilePath: ./frontend/Dockerfile
   repo: .  # Use the root of the repository
@@ -30,13 +32,19 @@ services:
         name: student-system-backend
         type: web
         property: publicUrl
+  envVars:
+    - key: VITE_API_BASE_URL
+      fromService:
+        name: student-system-backend
+        type: web
+        property: publicUrl
   autoDeploy: false  # Set to true after initial deployment to enable auto deploys
 
 # Optional: MySQL Database (if you prefer MySQL over SQLite)
 # Uncomment the following section if you want to use MySQL instead of SQLite
 # - type: psdb
-#   name: student-db
-#   region: frankfurt
+#   name: student-system-db
+#   region: oregon
 #   plan: free
-#   databaseName: student_db
+#   databaseName: student_system_db
 #   user: student_user
