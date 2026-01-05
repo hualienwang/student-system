@@ -5,7 +5,7 @@ FROM node:18-alpine as build
 WORKDIR /app
 
 # 複製 package 文件
-COPY package*.json ./
+COPY frontend/package*.json ./
 
 # 安裝依賴
 RUN npm install
