@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 導入圖標樣式 */
+@import './icons.css';
+
+/* 基礎樣式重置 */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-size: 16px; /* 設定基礎字體大小 */
+  }
+  
+  body {
+    @apply font-sans antialiased text-gray-800 bg-gray-50 m-0 p-0;
+  }
+  
+  /* 強制限制所有容器尺寸 */
+  .container {
+    max-width: 100% !important;
+  }
+  
+  /* 移除所有預設的 SVG 樣式 */
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  /* 按鈕樣式 */
+  button {
+    @apply inline-flex items-center justify-center gap-1.5;
+  }
+  
+  /* 連結樣式 */
+  a {
+    @apply inline-flex items-center gap-1.5;
+  }
+}
+
+@layer components {
+  /* 小型按鈕 */
+  .btn {
+    @apply px-2 py-1 rounded text-xs font-medium transition-colors inline-flex items-center gap-1;
+  }
+  
+  .btn-sm {
+    @apply px-1.5 py-0.5 rounded text-xs;
+  }
+  
+  .btn-primary {
+    @apply btn bg-blue-600 text-white hover:bg-blue-700;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-gray-200 text-gray-800 hover:bg-gray-300;
+  }
+  
+  .btn-danger {
+    @apply btn bg-red-600 text-white hover:bg-red-700;
+  }
+  
+  /* 小型卡片 */
+  .card {
+    @apply bg-white rounded border border-gray-200 shadow-xs p-2;
+  }
+  
+  .card-sm {
+    @apply p-1.5;
+  }
+  
+  /* 小型表格 */
+  .table-sm {
+    @apply w-full text-xs;
+  }
+  
+  .table-sm th {
+    @apply px-2 py-1 text-left font-medium text-gray-600 bg-gray-50;
+  }
+  
+  .table-sm td {
+    @apply px-2 py-1 border-t border-gray-100;
+  }
+  
+  /* 小型表單 */
+  .form-input-sm {
+    @apply w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .form-label-sm {
+    @apply block text-xs font-medium text-gray-700 mb-0.5;
+  }
+  
+  /* 新增現代化樣式 */
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  .form-select {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-md p-4 border border-gray-200;
+  }
+  
+  .card-body {
+    @apply p-6;
+  }
+}

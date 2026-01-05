@@ -1,0 +1,42 @@
+services:
+# Backend API Service
+- type: web
+  name: student-system-backend
+  env: docker
+  region: frankfurt  # Choose region closest to your users
+  plan: free
+  dockerfilePath: ./backend/Dockerfile
+  repo: .  # Use the root of the repository
+  envVars:
+    - key: DB_TYPE
+      value: sqlite
+    - key: DATABASE_URL
+      value: sqlite:///./student_system.db
+    - key: ALLOWED_ORIGINS
+      value: https://student-system-frontend.onrender.com,https://student-system-backend.onrender.com,http://localhost:8000,http://127.0.0.1:8000
+  autoDeploy: false  # Set to true after initial deployment to enable auto deploys
+
+# Frontend Service
+- type: web
+  name: student-system-frontend
+  env: docker
+  region: frankfurt
+  plan: free
+  dockerfilePath: ./frontend/Dockerfile
+  repo: .  # Use the root of the repository
+  buildArgs:
+    - key: API_BASE_URL
+      fromService:
+        name: student-system-backend
+        type: web
+        property: publicUrl
+  autoDeploy: false  # Set to true after initial deployment to enable auto deploys
+
+# Optional: MySQL Database (if you prefer MySQL over SQLite)
+# Uncomment the following section if you want to use MySQL instead of SQLite
+# - type: psdb
+#   name: student-db
+#   region: frankfurt
+#   plan: free
+#   databaseName: student_db
+#   user: student_user
