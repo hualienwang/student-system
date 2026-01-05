@@ -6,8 +6,10 @@ Render Deployment Checklist for student-system
 - Root Directory (Build Context): set to the repository root (recommended for current Dockerfile)
 - Dockerfile Path: `frontend/Dockerfile`
 - Environment: set the following environment variables (Build & Runtime where applicable):
-  - `VITE_API_BASE_URL` (value: your API base URL)
+  - `VITE_API_BASE_URL` (value: your API base URL — set this to your backend's public URL, e.g. `https://your-backend.onrender.com`)
 - Port: 80 (nginx listens on 80)
+
+Note: This project serves the frontend as static files; the frontend makes API requests directly from the browser using `VITE_API_BASE_URL`. The Docker image no longer proxies `/api/` to an internal hostname to avoid DNS resolution failures during container startup. If you prefer server-side proxying, configure a `BACKEND_URL` env var and convert `nginx.conf` into a template that uses `envsubst` at startup.
 
 2) Build and cache
 - When making Dockerfile or related file changes, use "Clear Cache & Deploy" in Render to force a full rebuild
