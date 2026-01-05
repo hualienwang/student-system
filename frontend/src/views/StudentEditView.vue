@@ -20,7 +20,7 @@
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- 表單卡片 -->
-        <div v-else-if="student" class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+        <div v-if="student" class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
           <!-- 載入中 -->
           <div v-if="loading" class="flex flex-col items-center justify-center py-12">
             <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mb-4"></div>
@@ -264,7 +264,7 @@
       </div>
 
       <!-- 學生不存在 -->
-      <div v-else class="text-center py-12">
+      <div v-if="!student" class="text-center py-12">
         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
