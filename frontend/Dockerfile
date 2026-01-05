@@ -1,4 +1,4 @@
-# 第一階段：構建階段
+# 第一階段：構建階
 FROM node:18-alpine as build
 
 # 設置工作目錄
