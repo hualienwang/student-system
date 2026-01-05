@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # 複製應用代碼
-COPY . .
+COPY backend/ .
 
 # 暴露端口
 EXPOSE 8000
