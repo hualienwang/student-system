@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # 資料庫連接配置 - 使用更穩定的配置
-DB_TYPE = os.getenv("DB_TYPE", "sqlite")  # 默認為 SQLite，如果沒有 MySQL
+DB_TYPE = os.getenv("DB_TYPE", "mysql")  # 默認為 SQLite，如果沒有 MySQL
 
 if DB_TYPE == "mysql":
     # MySQL 配置

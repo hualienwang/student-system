@@ -9,8 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: student_db
-      MYSQL_USER: student_user
-      MYSQL_PASSWORD: student_password
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
     ports:
       - "3306:3306"
     volumes:
@@ -29,8 +29,8 @@ services:
     environment:
       - DB_HOST=db
       - DB_PORT=3306
-      - DB_USER=student_user
-      - DB_PASSWORD=student_password
+      - DB_USER=root
+      - DB_PASSWORD=1234
       - DB_NAME=student_db
       - ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
     depends_on:
