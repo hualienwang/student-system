@@ -1,5 +1,5 @@
 # 第一階段：構建階
-FROM node:18-alpine as build
+FROM node:20-alpine as build
 
 # 設置工作目錄
 WORKDIR /app
@@ -7,8 +7,8 @@ WORKDIR /app
 # 複製 package 文件
 COPY frontend/package*.json ./
 
-# 安裝依賴
-RUN npm install
+# 安裝依賴（使用 npm ci 以獲得可重複的安裝）
+RUN npm ci
 
 # 設定環境變數以配置 API URL
 ARG API_BASE_URL=
