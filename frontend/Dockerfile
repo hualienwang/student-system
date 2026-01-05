@@ -11,7 +11,7 @@ COPY frontend/package*.json ./
 RUN npm ci
 
 # 設定環境變數以配置 API URL
-ARG API_BASE_URL=
+ARG API_BASE_URL=https://student-system-1-q7r4.onrender.com
 ENV VITE_API_BASE_URL=$API_BASE_URL
 
 # 複製源代碼

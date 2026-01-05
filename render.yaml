@@ -13,7 +13,7 @@ services:
     - key: DATABASE_URL
       value: sqlite:///./student_system.db
     - key: ALLOWED_ORIGINS
-      value: https://student-system-frontend.onrender.com,https://student-system-backend.onrender.com,http://localhost:8000,http://127.0.0.1:8000,https://*.onrender.com
+      value: https://student-system-2-4ikz.onrender.com,https://student-system-1-q7r4.onrender.com,http://localhost:8000,http://127.0.0.1:8000,https://*.onrender.com
     - key: PORT
       value: 8000
   autoDeploy: false  # Set to true after initial deployment to enable auto deploys
