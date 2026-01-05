@@ -24,5 +24,8 @@ COPY . .
 # 暴露端口
 EXPOSE 8000
 
+# 設置環境變數默認值
+ENV PORT=8000
+
 # 運行應用
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
