@@ -22,7 +22,7 @@ from .crud import (
 )
 
 # 從環境變數獲取允許的來源
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,https://student-system-frontend.onrender.com,https://student-system-backend.onrender.com").split(",")
 
 # 建立 FastAPI 應用程式
 app = FastAPI(
@@ -45,16 +45,16 @@ app.add_middleware(
     expose_headers=["Access-Control-Allow-Origin"]
 )
 
-# @app.on_event("startup")
-# def on_startup():
-#     """應用程式啟動時建立資料庫表格"""
-#     try:
-#         create_db_and_tables()
-#         app_logger.info("資料庫初始化完成")
-#     except Exception as e:
-#         app_logger.error(f"資料庫初始化失敗: {e}")
-#         print("⚠️ 系統將繼續運行，但資料庫功能可能不可用")
-#         print("請檢查 MySQL 連接設置")
+@app.on_event("startup")
+def on_startup():
+    """應用程式啟動時建立資料庫表格"""
+    try:
+        create_db_and_tables()
+        app_logger.info("資料庫初始化完成")
+    except Exception as e:
+        app_logger.error(f"資料庫初始化失敗: {e}")
+        print("⚠️ 系統將繼續運行，但資料庫功能可能不可用")
+        print("請檢查 MySQL 連接設置")
 
 @app.get("/")
 def read_root():
@@ -73,10 +73,18 @@ def read_root():
     }
 
 @app.get("/health")
-def health_check():
+def health_check(session: Session = Depends(get_session)):
     """健康檢查端點"""
     api_logger.info("健康檢查端點被訪問")
-    return {"status": "healthy", "database": "connected"}
+    try:
+        # 嘗試執行一個簡單的查詢來測試數據庫連接
+        session.execute("SELECT 1")
+        db_status = "connected"
+    except Exception as e:
+        api_logger.error(f"數據庫連接檢查失敗: {e}")
+        db_status = "disconnected"
+    
+    return {"status": "healthy", "database": db_status}
 
 # API 版本控制 - 學生相關端點
 @app.post("/students/", response_model=StudentResponse)
