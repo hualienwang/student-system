@@ -5,7 +5,7 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # 複製依賴文件
-COPY requirements.txt .
+COPY backend/requirements.txt .
 
 # 安裝系統依賴和 Python 包
 RUN apt-get update && \
